@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -35,20 +36,24 @@ int main() {
     while (getline (file, word)) {
 	int f = 0;
 	int l = 0;
+	int fpos = INT_MAX;
+	int lpos = INT_MIN;
+	int pos;
 	for (int i = 0; i < 20; i++) {
-		if(word.find(target[i]) != string::npos) {
+		pos = word.find(target[i]);
+		if (pos != string::npos && pos < fpos) {
 			f = i % 10;
-			break;
+			fpos = pos;
 		}	
 	}	
 	for (int i = 0; i < 20; i++) {
-		if (word.rfind(target[i]) != string::npos) {
+		pos = word.rfind(target[i]);
+		if (pos != string::npos && pos > lpos) {
 			l = i % 10;
-			break;
+			lpos = pos;
 		}
 	}
-	cout << f << l << endl;
 	sum += f * 10 + l;
     }
-    //cout << sum << endl;
+    cout << sum << endl;
 }
