@@ -12,9 +12,6 @@ using namespace std;
 int main() {
     fstream file;
     file.open("input.txt");
-    int r = 12;
-    int g = 13;
-    int b = 14;
     string line;
     int sum = 0;
 
